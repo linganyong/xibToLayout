@@ -17,7 +17,6 @@ NSString *mPath   = [NSString stringWithFormat:@"//Users/lgy/Desktop/%@.m",self.
 
 
 如果：isXibSimple == true
-依赖：  #import "UIView+LGYXibToLayout.h"
 生成如下 .m文件布局代码 如下： 
-[self.xib_bottom  equalTo:self.view1.xib_bottom  multiplier:1.000000 constant:330.000000];
+[self.xib_bottom  equalTo:self.view1.xib_bottom  multiplier:1.000000 constant:330.000000]; // 依赖：  #import "UIView+LGYXibToLayout.h"
 
