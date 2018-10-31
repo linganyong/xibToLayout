@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-zw-Ggu">
+                    <rect key="frame" x="16" y="20" width="343" height="114.5"/>
+                    <color key="backgroundColor" red="0.34967436117695783" green="0.20632675054118654" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yhK-zw-Ggu" secondAttribute="height" multiplier="3:1" id="iXX-BP-fnZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="propertyName" value="HeaderView"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="headerView"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyDescription" value="头部文件"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVT-gw-pEq">
+                    <rect key="frame" x="166" y="167.5" width="42" height="21"/>
+                    <color key="backgroundColor" red="1" green="0.65354318594031802" blue="0.59569179253777782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="YVT-gw-pEq" secondAttribute="height" multiplier="2:1" id="L9d-S1-IQV"/>
+                        <constraint firstAttribute="width" constant="42" id="NJl-HX-9XE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="propertyName" value="secondLabel"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="secondView"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBX-XZ-11A">
+                    <rect key="frame" x="16" y="209" width="359" height="128"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udm-Vz-Ydg">
+                            <rect key="frame" x="0.0" y="20" width="157" height="108"/>
+                            <color key="backgroundColor" red="1" green="0.68146774079898398" blue="0.69148987904666614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="157" id="XEw-2H-wNz"/>
+                                <constraint firstAttribute="height" constant="108" id="eQh-qg-AJB"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1_1"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cl3-Lf-Vyb">
+                            <rect key="frame" x="165" y="8" width="194" height="128"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voA-Y2-5bD">
+                                    <rect key="frame" x="85" y="23" width="101" height="105"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTO-bq-aAC">
+                                            <rect key="frame" x="27" y="27" width="66" height="50"/>
+                                            <color key="backgroundColor" red="0.45355008279986042" green="1" blue="0.50674779304721751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="0Nt-u2-ab5"/>
+                                                <constraint firstAttribute="height" constant="50" id="I7r-dV-8Iq"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1_2_1_1"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.72988759835661987" green="0.33743914677737685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="UTO-bq-aAC" secondAttribute="bottom" constant="28" id="3lp-hd-Hpv"/>
+                                        <constraint firstAttribute="height" constant="105" id="67z-oR-wR7"/>
+                                        <constraint firstAttribute="trailing" secondItem="UTO-bq-aAC" secondAttribute="trailing" constant="8" id="Dcq-yX-usM"/>
+                                        <constraint firstAttribute="width" constant="101" id="ehv-Bo-6gY"/>
+                                        <constraint firstItem="UTO-bq-aAC" firstAttribute="top" secondItem="voA-Y2-5bD" secondAttribute="top" constant="27" id="vzL-lf-V7h"/>
+                                        <constraint firstItem="UTO-bq-aAC" firstAttribute="leading" secondItem="voA-Y2-5bD" secondAttribute="leading" constant="27" id="yWQ-O4-TDd"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1_2_1"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.45952369170000001" blue="0.4238424193" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="voA-Y2-5bD" firstAttribute="leading" secondItem="Cl3-Lf-Vyb" secondAttribute="leading" constant="85" id="Q9w-oQ-5YL"/>
+                                <constraint firstItem="voA-Y2-5bD" firstAttribute="top" secondItem="Cl3-Lf-Vyb" secondAttribute="top" constant="23" id="jEu-gS-PNf"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1_2"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Cl3-Lf-Vyb" secondAttribute="bottom" constant="-8" id="6k4-UX-7i5"/>
+                        <constraint firstItem="Cl3-Lf-Vyb" firstAttribute="top" secondItem="LBX-XZ-11A" secondAttribute="top" constant="8" id="GOJ-cZ-tvw"/>
+                        <constraint firstItem="Cl3-Lf-Vyb" firstAttribute="leading" secondItem="udm-Vz-Ydg" secondAttribute="trailing" constant="8" id="M8s-AF-J2j"/>
+                        <constraint firstAttribute="trailing" secondItem="Cl3-Lf-Vyb" secondAttribute="trailing" id="TjP-1Q-tuP"/>
+                        <constraint firstItem="Cl3-Lf-Vyb" firstAttribute="leading" secondItem="udm-Vz-Ydg" secondAttribute="trailing" constant="8" id="lKJ-Hz-hbE"/>
+                        <constraint firstItem="udm-Vz-Ydg" firstAttribute="top" secondItem="LBX-XZ-11A" secondAttribute="top" constant="20" id="stg-Yr-dQt"/>
+                        <constraint firstItem="udm-Vz-Ydg" firstAttribute="leading" secondItem="LBX-XZ-11A" secondAttribute="leading" id="u4g-hR-Hyu"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmL-0p-DOu">
+                    <rect key="frame" x="16" y="408" width="343" height="105"/>
+                    <color key="backgroundColor" red="1" green="0.49819378328360431" blue="0.58735431658763526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view2"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LBX-XZ-11A" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="3s7-fn-Kju"/>
+                <constraint firstItem="LBX-XZ-11A" firstAttribute="top" secondItem="YVT-gw-pEq" secondAttribute="bottom" constant="20.5" id="4Wj-a8-sgb"/>
+                <constraint firstItem="LBX-XZ-11A" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="684-wb-jTP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LBX-XZ-11A" secondAttribute="bottom" constant="330" id="Gli-qu-xcr"/>
+                <constraint firstItem="QmL-0p-DOu" firstAttribute="top" secondItem="LBX-XZ-11A" secondAttribute="bottom" constant="71" id="SAA-5y-Fii"/>
+                <constraint firstItem="yhK-zw-Ggu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Vgl-dP-nX7"/>
+                <constraint firstItem="QmL-0p-DOu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="WDu-ph-mWI"/>
+                <constraint firstItem="QmL-0p-DOu" firstAttribute="height" secondItem="voA-Y2-5bD" secondAttribute="height" id="gHv-yr-Mnh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QmL-0p-DOu" secondAttribute="trailing" constant="16" id="jDR-4E-zdG"/>
+                <constraint firstItem="YVT-gw-pEq" firstAttribute="top" secondItem="yhK-zw-Ggu" secondAttribute="bottom" constant="33" id="jwm-2L-dkW"/>
+                <constraint firstItem="yhK-zw-Ggu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="lSe-Vz-ycS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yhK-zw-Ggu" secondAttribute="trailing" constant="16" id="uGb-Nl-sMC"/>
+                <constraint firstItem="YVT-gw-pEq" firstAttribute="centerX" secondItem="yhK-zw-Ggu" secondAttribute="centerX" id="wBR-9e-wgj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyDescription" value="案例view"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+</document>
