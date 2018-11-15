@@ -118,15 +118,13 @@
                 }
             }
         }
-        if (view.constraints.count < 1) {
-            view.translatesAutoresizingMaskIntoConstraints = NO;
-        }
     }
-    if (self.attributeView.constraints.count < 1) {
+    if (view != self.attributeView) {
         self.attributeView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    if (attr2.attributeView.constraints.count < 1) {
-        attr2.attributeView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    if (view != attr2.attributeView) {
+        self.attributeView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
     if (upData) {
