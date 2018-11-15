@@ -9,9 +9,19 @@
 #import "XibLayoutAttribute.h"
 #import "UIView+LGYXibToLayout.h"
 
+
+@interface XibLayoutAttribute()
+
+
+@end
+
 @implementation XibLayoutAttribute
+
 {
     NSMutableArray *supViewArray;
+//    CGFloat _multiplier;
+//    CGFloat _constant;
+//    NSInteger _priority;
 }
 
 
@@ -36,33 +46,66 @@
     return false;
 }
 
--(void)equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self relatedBy:NSLayoutRelationEqual attribute:attr2 multiplier:multiplier constant:c];
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2  constant:(CGFloat)c {
+    return [self relatedBy:NSLayoutRelationEqual attribute:attr2 multiplier:1 constant:c];
+};
+
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c {
+    return [self relatedBy:NSLayoutRelationLessThanOrEqual attribute:attr2 multiplier:1 constant:c];
+};
+
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2 constant:(CGFloat)c {
+    return [self relatedBy:NSLayoutRelationGreaterThanOrEqual attribute:attr2 multiplier:1 constant:c];
+};
+
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2 constant:(CGFloat)c multiplier:(CGFloat)multiplier{
+    return [self relatedBy:NSLayoutRelationEqual attribute:attr2 multiplier:multiplier constant:c];
+};
+
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier{
+    return  [self relatedBy:NSLayoutRelationLessThanOrEqual attribute:attr2 multiplier:multiplier constant:c];
+};
+
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier{
+    return [self relatedBy:NSLayoutRelationGreaterThanOrEqual attribute:attr2 multiplier:multiplier constant:c];
+};
+
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2 constant:(CGFloat)c multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority{
+    return [self relatedBy:NSLayoutRelationEqual attribute:attr2 multiplier:multiplier constant:c priority:priority isUpdata:false];
+};
+
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority{
+    return [self relatedBy:NSLayoutRelationLessThanOrEqual attribute:attr2 multiplier:multiplier constant:c priority:priority isUpdata:false];
+};
+
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority{
+    return [self relatedBy:NSLayoutRelationGreaterThanOrEqual attribute:attr2 multiplier:multiplier constant:c priority:priority isUpdata:false];
 };
 
 
--(void)lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self relatedBy:NSLayoutRelationLessThanOrEqual attribute:attr2 multiplier:multiplier constant:c];
-};
+-(NSLayoutConstraint *)relatedBy:(NSLayoutRelation)relation  attribute:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+    return [self relatedBy:relation attribute:attr2 multiplier:multiplier constant:c priority:0 isUpdata:false];
+}
 
--(void)greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self relatedBy:NSLayoutRelationGreaterThanOrEqual attribute:attr2 multiplier:multiplier constant:c];
-};
-
--(void)relatedBy:(NSLayoutRelation)relation  attribute:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    if ([self layoutError:attr2]) {
-        return;
+-(NSLayoutConstraint *)relatedBy:(NSLayoutRelation)relation  attribute:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c priority:(UILayoutPriority)priority isUpdata:(BOOL)upData{
+    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c];
+    if (priority != 0) {
+        layout.priority = priority;
     }
+    if ([self layoutError:attr2]) {
+        return layout;
+    }
+    UIView *view;
     if (attr2 == nil) {
-        [self.attributeView addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:multiplier constant:c]];
+        view = self.attributeView;
     }else if (self.attributeView == attr2.attributeView) {
-        [self.attributeView addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+        view = self.attributeView;
     }else if(self.attributeView == attr2.attributeView.superview){
-        [self.attributeView addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+        view = self.attributeView;
     }else if(self.attributeView.superview == attr2.attributeView.superview){
-        [self.attributeView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+        view = self.attributeView.superview;
     }else if(self.attributeView.superview == attr2.attributeView){
-        [self.attributeView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+        view = self.attributeView.superview ;
     }else{
         NSArray *array1 = [self getSuperView:attr2.attributeView];
         supViewArray = nil;
@@ -70,13 +113,19 @@
         for (UIView *view1 in array1) {
             for (UIView *view2 in array2) {
                 if (view1 == view2) {
-                    [view2 addConstraint:[NSLayoutConstraint constraintWithItem:self.attributeView attribute:self.attribute     relatedBy:relation toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+                    view = view1;
                     break;
                 }
             }
         }
         
     }
+    if (upData) {
+        [view upDataConstraint:layout];
+    }else{
+        [view addConstraint:layout];
+    }
+    return layout;
 }
 
 -(NSArray *) getSuperView:(UIView *)view{

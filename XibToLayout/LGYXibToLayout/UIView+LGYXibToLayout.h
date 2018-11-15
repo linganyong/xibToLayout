@@ -7,21 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <objc/runtime.h>
 #import "XibLayoutAttribute.h"
+#import "NSLayoutConstraint+LGYXibToLayout.h"
 
 @interface UIView (LGYXibToLayout)
 
-//属性名称
-@property (nonatomic,copy) IBInspectable NSString *xibPropertyName;
-//属性表述
-@property (nonatomic,copy) IBInspectable NSString *xibPropertyDescription;
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+//
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+//
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+//
 
--(void)xibLayout:(XibLayoutAttribute *)attr1 equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+//添加约束之前会移除之前的约束
+- (NSLayoutConstraint *)upDataConstraint:(NSLayoutConstraint *)constraint;
 
--(void)xibLayout:(XibLayoutAttribute *)attr1 lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
-
--(void)xibLayout:(XibLayoutAttribute *)attr1 greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+- (NSLayoutConstraint *)getConstraint:(NSString *)xibKey;
 
 - (XibLayoutAttribute *) xib_left;
 

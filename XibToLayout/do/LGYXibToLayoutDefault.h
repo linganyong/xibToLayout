@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UIView+LGYXibToLayout.h"
+#import "UIView+Default.h"
 
 @interface LGYXibToLayoutDefault : NSObject
 
-@property (nonatomic,strong) NSMutableArray *dataScoureViews;
+@property (nonatomic,strong) NSMutableArray *dataScoureViews; //除了self.backView的view
 
 @property (nonatomic,strong) NSString *getInitContent;
 @property (nonatomic,strong) NSString *proertyContent;

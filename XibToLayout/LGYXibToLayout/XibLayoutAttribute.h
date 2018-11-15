@@ -16,12 +16,26 @@
 
 -(id) initWithAttribute:(NSLayoutAttribute )attribute ForView:(UIView *)view;
 
--(void)equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2  constant:(CGFloat)c ;
 
--(void)lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c ;
 
--(void)greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2 constant:(CGFloat)c ;
 
--(void)relatedBy:(NSLayoutRelation)relation  attribute:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
+
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2 constant:(CGFloat)c multiplier:(CGFloat)multiplier;
+
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier;
+
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier;
+
+-(NSLayoutConstraint *)equalTo:(XibLayoutAttribute *)attr2 constant:(CGFloat)c multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority;
+
+-(NSLayoutConstraint *)lassThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority;
+
+-(NSLayoutConstraint *)greaterThan:(XibLayoutAttribute *)attr2  constant:(CGFloat)c  multiplier:(CGFloat)multiplier priority:(UILayoutPriority)priority;
+
+
+-(NSLayoutConstraint *)relatedBy:(NSLayoutRelation)relation  attribute:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c;
 
 @end

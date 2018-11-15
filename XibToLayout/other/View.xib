@@ -72,7 +72,7 @@
                                             <color key="backgroundColor" red="0.45355008279986042" green="1" blue="0.50674779304721751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="0Nt-u2-ab5"/>
-                                                <constraint firstAttribute="height" constant="50" id="I7r-dV-8Iq"/>
+                                                <constraint firstAttribute="height" priority="750" constant="50" id="I7r-dV-8Iq"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="view1_2_1_1"/>
@@ -85,7 +85,7 @@
                                         <constraint firstAttribute="height" constant="105" id="67z-oR-wR7"/>
                                         <constraint firstAttribute="trailing" secondItem="UTO-bq-aAC" secondAttribute="trailing" constant="8" id="Dcq-yX-usM"/>
                                         <constraint firstAttribute="width" constant="101" id="ehv-Bo-6gY"/>
-                                        <constraint firstItem="UTO-bq-aAC" firstAttribute="top" secondItem="voA-Y2-5bD" secondAttribute="top" constant="27" id="vzL-lf-V7h"/>
+                                        <constraint firstItem="UTO-bq-aAC" firstAttribute="top" secondItem="voA-Y2-5bD" secondAttribute="top" priority="154" constant="27" id="vzL-lf-V7h"/>
                                         <constraint firstItem="UTO-bq-aAC" firstAttribute="leading" secondItem="voA-Y2-5bD" secondAttribute="leading" constant="27" id="yWQ-O4-TDd"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>

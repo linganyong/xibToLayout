@@ -8,48 +8,66 @@
 
 #import "UIView+LGYXibToLayout.h"
 
-
-static const void * propertyNameKey = @"propertyNameKey";
-static const void * xibPropertyDescriptionKey = @"xibPropertyDescriptionKey";
-
 @implementation UIView (LGYXibToLayout)
 
--(NSString *) xibPropertyName{
-    return objc_getAssociatedObject(self,propertyNameKey);
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c];
+//     [self addLGYConstraint:layout];
+//     return layout;
+//};
+//
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationLessThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c];
+//    [self addConstraint:layout];
+//    return layout;
+//};
+//
+//-(NSLayoutConstraint *)xibLayout:(XibLayoutAttribute *)attr1 greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c];
+//     [self addLGYConstraint:layout];
+//     return layout;
+//};
+//
+//-(NSLayoutConstraint *)xibUpdataLayout:(XibLayoutAttribute *)attr1 equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    return [self addLGYConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+//};
+//
+//-(NSLayoutConstraint *)xibUpdataLayout:(XibLayoutAttribute *)attr1 lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    return [self addLGYConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationLessThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+//};
+//
+//-(NSLayoutConstraint *)xibUpdataLayout:(XibLayoutAttribute *)attr1 greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
+//    return [self addLGYConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
+//};
+//
+
+
+- (NSLayoutConstraint *)upDataConstraint:(NSLayoutConstraint *)constraint{
+    for (NSLayoutConstraint *item in  self.constraints){
+        if (item.firstItem == constraint.firstItem && item.firstAttribute == constraint.firstAttribute && item.secondAttribute == constraint.secondAttribute){
+            if (item.secondItem == constraint.secondItem){
+                [self removeConstraint:item];
+            }
+        }
+    }
+    [self addConstraint:constraint];
+    return constraint;
 }
 
--(void) setXibPropertyName:(NSString *)xibPropertyName{
-    objc_setAssociatedObject(self, propertyNameKey, xibPropertyName, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (NSLayoutConstraint *)getConstraint:(NSString *)xibKey{
+    for (NSLayoutConstraint *item in  self.constraints){
+        if( [item.xibKey isEqualToString:xibKey]){
+            return item;
+        };
+    }
+    return nil;
 }
-
--(NSString *) xibPropertyDescription{
-    return objc_getAssociatedObject(self,xibPropertyDescriptionKey);
-}
-
--(void) setXibPropertyDescription:(NSString *)xibPropertyDescription{
-    objc_setAssociatedObject(self, xibPropertyDescriptionKey, xibPropertyDescription, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-
--(void)xibLayout:(XibLayoutAttribute *)attr1 equalTo:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
-};
-
--(void)xibLayout:(XibLayoutAttribute *)attr1 lassThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationLessThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
-};
-
--(void)xibLayout:(XibLayoutAttribute *)attr1 greaterThan:(XibLayoutAttribute *)attr2  multiplier:(CGFloat)multiplier constant:(CGFloat)c{
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:attr1.attributeView attribute:attr1.attribute     relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:attr2.attributeView attribute:attr2.attribute multiplier:multiplier constant:c]];
-};
-
 
 -(XibLayoutAttribute *) addConstraintWithLayoutAttribute:(NSLayoutAttribute)attribute{
-     return [[XibLayoutAttribute alloc] initWithAttribute:attribute ForView:self];
+    return [[XibLayoutAttribute alloc] initWithAttribute:attribute ForView:self];
 }
 
 #pragma mark - standard Attributes
-
 - (XibLayoutAttribute *) xib_left {
     return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeft];
 }

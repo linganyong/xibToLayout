@@ -14,6 +14,9 @@
 @property (nonatomic,strong) NSString *className;
 @property (nonatomic,strong) UIView *backView;
 
+@property (nonatomic,strong) NSMutableArray *allViewS;
+@property (nonatomic,strong) NSMutableArray *xibArray;
+
 @end
 
 
@@ -27,6 +30,8 @@
     _className = className;
     self.backView.xibPropertyName = [className lowercaseString];
     [self initContent:self.backView];
+    _allViewS = [NSMutableArray arrayWithCapacity:10];
+    [_allViewS addObject:self.backView];
     [self getAllView:self.backView];
     [self getContent];
     return self.backView;
@@ -39,6 +44,7 @@
             item.xibPropertyName = [NSString stringWithFormat:@"view%lu",++_viewCount];
         }
         [self.dataScoureViews addObject:item];
+        [_allViewS addObject:item];
         [self getAllView:item];
     }
 }
@@ -102,10 +108,11 @@
         self.proertyContent = [self.proertyContent stringByAppendingString:[NSString stringWithFormat:@" \n@property (nonatomic,strong) %@ *%@; // %@",NSStringFromClass([view class]),view.xibPropertyName,des1]];
         //生成 初始化和布局部分
         [self sssContent:view];
-       
+        
     }
     self.proertyContent  = [self.proertyContent stringByAppendingString:@"\n\n-(void) xibLayoutView;\n\n @end"];
     self.getInitContent  = [self.getInitContent stringByAppendingString:@"\n\n@end"];
+    [self getAllXibLayout];
     //保存文件
     [self writeToFileHString:self.proertyContent mString:self.getInitContent];
 }
@@ -120,7 +127,7 @@
     if (description) {
         string = [NSString stringWithFormat:@"\n\n//%@ \n-(%@ *) %@{\n if(!_%@){\n _%@ = [[%@ alloc] init]; $  \n} \n return _%@;  \n}",description,className,propertyName,propertyName,propertyName,className,propertyName];
     }else{
-         string = [NSString stringWithFormat:@"\n\n-(%@ *) %@{\n if(!_%@){\n _%@ = [[%@ alloc] init]; $  \n} \n return _%@;  \n}",className,propertyName,propertyName,propertyName,className,propertyName];
+        string = [NSString stringWithFormat:@"\n\n-(%@ *) %@{\n if(!_%@){\n _%@ = [[%@ alloc] init]; $  \n} \n return _%@;  \n}",className,propertyName,propertyName,propertyName,className,propertyName];
     }
     
     NSString *content = [NSString stringWithFormat:@"\n_%@.translatesAutoresizingMaskIntoConstraints = NO;",propertyName];
@@ -152,7 +159,8 @@
 // 生成 subView 相关约束
 -(NSString *) getLayoutStringFromView:(UIView *)subView{
     if (self.isXibSimple) {
-       return  [self getLayoutStringFromViewXibSimple:subView];
+        return [NSString stringWithFormat:@"(*%@*)",subView.xibPropertyName];
+//        return  [self getLayoutStringFromViewXibSimple:subView];
     }
     NSString *content = @"\n";
     for (NSLayoutConstraint *constraint in subView.constraints) {
@@ -207,12 +215,123 @@
                 str = @"";
             }
         }
-
+        
         content = [content stringByAppendingString:str];
     }
     return content;
 }
 
+-(void) getAllXibLayout{
+    _xibArray = [NSMutableArray arrayWithCapacity:10];
+    for (UIView *view in _allViewS) {
+        if (view.constraints.count > 0) {
+            [_xibArray addObjectsFromArray:view.constraints];
+        }
+    }
+    [self getLayoutStringFromViewXibSimple];
+}
+
+
+// 生成 subView 相关约束
+-(void ) getLayoutStringFromViewXibSimple{
+    for (UIView *view in _allViewS) {
+        NSString *content = @"\n";
+        for (NSLayoutConstraint *constraint in _xibArray) {
+            UIView *secondItem;
+            UIView *firstItem;
+            BOOL flag = false;
+            if ([constraint.firstItem isKindOfClass:[UILayoutGuide class]]) {
+                firstItem = ((UILayoutGuide *)constraint.firstItem).owningView;
+            }else {
+                firstItem = constraint.firstItem;
+                
+            }
+            
+            if ([constraint.secondItem isKindOfClass:[UILayoutGuide class]]) {
+                secondItem = ((UILayoutGuide *)constraint.secondItem).owningView;
+            }else {
+                secondItem = constraint.secondItem;
+                
+            }
+            if (firstItem == self.backView) {
+                if (secondItem == view) {
+                    flag = true;
+                }
+            }else{
+                if (firstItem == view) {
+                    flag = true;
+                }
+            }
+            
+            if (flag) {
+                NSString *str;
+                NSString *item1 = @"nil";
+                NSString *item2 = @"nil";
+                if (firstItem == self.backView) {
+                    item1 =  @"self";
+                }else{
+                    item1 =  [NSString stringWithFormat:@"self.%@",((UIView *)firstItem).xibPropertyName];
+                }
+                
+                if (secondItem == self.backView) {
+                    item2 =  @"self";
+                }else if(secondItem) {
+                    item2 =  [NSString stringWithFormat:@"self.%@",((UIView *)secondItem).xibPropertyName];
+                }else{
+                    item2 = @"nil";
+                }
+                
+                item1 = [NSString stringWithFormat:@"%@.%@" ,item1
+                         ,[self layoutAttributeTypeToString:constraint.firstAttribute isXibSimple:self.isXibSimple]];
+                
+                if (![item2 isEqualToString:@"nil"]) {
+                    item2 = [NSString stringWithFormat:@"%@.%@" ,item2
+                            ,[self layoutAttributeTypeToString:constraint.secondAttribute isXibSimple:self.isXibSimple]];
+                }
+                
+                NSString *pro = @"";
+                NSString *multip = @"";
+                
+                if (constraint.priority == UILayoutPriorityDefaultHigh) {
+                    pro = [NSString stringWithFormat:@" priority:UILayoutPriorityDefaultHigh"];
+                }
+                if (constraint.priority == UILayoutPriorityDefaultLow) {
+                    pro = [NSString stringWithFormat:@" priority:UILayoutPriorityDefaultLow"];
+                }
+                if (constraint.priority == UILayoutPriorityFittingSizeLevel) {
+                    pro = [NSString stringWithFormat:@" priority:UILayoutPriorityFittingSizeLevel"];
+                }
+                
+                if (constraint.multiplier != 1.00 || multip.length > 4) {
+                    multip = [NSString stringWithFormat:@" multiplier:%.2lf",constraint.multiplier];
+                }
+                
+                
+                if (firstItem == self.backView) {
+                    str = [NSString stringWithFormat:@"\n[%@ %@:%@ constant:%.2lf%@];"
+                           ,item2
+                           ,[self layoutRelationTypeToString:constraint.relation isXibSimple:self.isXibSimple]
+                           ,item1
+                           ,constraint.constant*-1
+                           ,multip];
+                    
+                }else{
+                    str = [NSString stringWithFormat:@"\n[%@ %@:%@ constant:%.2lf%@];"
+                           ,item1
+                           ,[self layoutRelationTypeToString:constraint.relation isXibSimple:self.isXibSimple]
+                           ,item2
+                           ,constraint.constant
+                           ,multip];
+                }
+                if (constraint.firstAttribute == constraint.secondAttribute && [item1 isEqualToString:item2]) {
+                    str = @"";
+                }
+                content = [content stringByAppendingString:str];
+            }
+        }
+        self.getInitContent = [self.getInitContent stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"(*%@*)",view.xibPropertyName] withString:content];
+    }
+}
 
 // 生成 subView 相关约束
 -(NSString *) getLayoutStringFromViewXibSimple:(UIView *)subView{
@@ -334,9 +453,7 @@
     }else{
         NSLog(@"LGYXibToLayoutDefault .m文件写入 失败");
     };
-    
 }
-
 
 #pragma mark - get
 - (NSMutableArray *)dataScoureViews{
