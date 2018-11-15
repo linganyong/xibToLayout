@@ -66,4 +66,46 @@
 
 - (XibLayoutAttribute *) xib_centerYWithinMargins;
 
+- (XibLayoutAttribute *) leftXib;
+
+- (XibLayoutAttribute *) topXib;
+
+- (XibLayoutAttribute *) rightXib;
+
+- (XibLayoutAttribute *) bottomXib;
+
+- (XibLayoutAttribute *) leadingXib;
+
+- (XibLayoutAttribute *) trailingXib;
+
+- (XibLayoutAttribute *) widthXib;
+
+- (XibLayoutAttribute *) heightXib;
+
+- (XibLayoutAttribute *) centerXXib;
+
+- (XibLayoutAttribute *) centerYXib;
+
+- (XibLayoutAttribute *) baselineXib;
+
+- (XibLayoutAttribute *) firstBaselineXib;
+
+- (XibLayoutAttribute *) lastBaselineXib;
+
+- (XibLayoutAttribute *) leftMarginXib;
+
+- (XibLayoutAttribute *) rightMarginXib;
+
+- (XibLayoutAttribute *) topMarginXib;
+
+- (XibLayoutAttribute *) bottomMarginXib;
+
+- (XibLayoutAttribute *) leadingMarginXib;
+
+- (XibLayoutAttribute *) trailingMarginXib;
+
+- (XibLayoutAttribute *) centerXWithinMarginsXib;
+
+- (XibLayoutAttribute *) centerYWithinMarginsXib;
+
 @end

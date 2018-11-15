@@ -18,6 +18,10 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ak-i5-BT6">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="backImageView"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyDescription" value="背景图片"/>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNO-gM-I1R">
                     <rect key="frame" x="16" y="20" width="40" height="40"/>
@@ -107,10 +111,10 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBO-CB-96z">
-                    <rect key="frame" x="42" y="435" width="291" height="30"/>
+                    <rect key="frame" x="42" y="435" width="291" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="291" id="3rO-YA-6WI"/>
-                        <constraint firstAttribute="height" constant="30" id="BN1-V2-Y9J"/>
+                        <constraint firstAttribute="height" constant="40" id="BN1-V2-Y9J"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <userDefinedRuntimeAttributes>

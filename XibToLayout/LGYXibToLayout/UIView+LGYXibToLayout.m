@@ -68,6 +68,92 @@
 }
 
 #pragma mark - standard Attributes
+- (XibLayoutAttribute *) leftXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeft];
+}
+
+- (XibLayoutAttribute *) topXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeTop];
+}
+
+- (XibLayoutAttribute *) rightXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeRight];
+}
+
+- (XibLayoutAttribute *) bottomXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeBottom];
+}
+
+- (XibLayoutAttribute *) leadingXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeading];
+}
+
+- (XibLayoutAttribute *) trailingXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeTrailing];
+}
+
+- (XibLayoutAttribute *) widthXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeWidth];
+}
+
+- (XibLayoutAttribute *) heightXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeHeight];
+}
+
+- (XibLayoutAttribute *) centerXXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeCenterX];
+}
+
+- (XibLayoutAttribute *) centerYXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeCenterY];
+}
+
+- (XibLayoutAttribute *) baselineXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeBaseline];
+}
+
+
+- (XibLayoutAttribute *) firstBaselineXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeFirstBaseline];
+}
+
+- (XibLayoutAttribute *) lastBaselineXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLastBaseline];
+}
+
+- (XibLayoutAttribute *) leftMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeftMargin];
+}
+
+- (XibLayoutAttribute *) rightMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeRightMargin];
+}
+
+- (XibLayoutAttribute *) topMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeTopMargin];
+}
+
+- (XibLayoutAttribute *) bottomMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeBottomMargin];
+}
+
+- (XibLayoutAttribute *) leadingMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeadingMargin];
+}
+
+- (XibLayoutAttribute *) trailingMarginXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeTrailingMargin];
+}
+
+- (XibLayoutAttribute *) centerXWithinMarginsXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeCenterXWithinMargins];
+}
+
+- (XibLayoutAttribute *) centerYWithinMarginsXib {
+    return [self addConstraintWithLayoutAttribute:NSLayoutAttributeCenterYWithinMargins];
+}
+
+#pragma mark - standard Attributes
 - (XibLayoutAttribute *) xib_left {
     return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeft];
 }

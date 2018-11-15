@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0938A0219D57F100ED3D29 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09389E219D57F100ED3D29 /* RegisterView.m */; };
 		AB53A59B219BC69000111230 /* UIView+Default.m in Sources */ = {isa = PBXBuildFile; fileRef = AB53A59A219BC69000111230 /* UIView+Default.m */; };
 		AB53A59E219BDE1700111230 /* NSLayoutConstraint+LGYXibToLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB53A59D219BDE1700111230 /* NSLayoutConstraint+LGYXibToLayout.m */; };
 		AB53A5D5219C188000111230 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB53A5D4219C188000111230 /* RegisterView.xib */; };
@@ -46,6 +47,8 @@
 		34F81B6BE8E4ADC6F3F77138 /* Pods-XibToLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XibToLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XibToLayout/Pods-XibToLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		569018FE34734E9124E6C598 /* Pods_XibToLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XibToLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		992824412CE4E8A593540FD3 /* Pods-XibToLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XibToLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-XibToLayout/Pods-XibToLayout.release.xcconfig"; sourceTree = "<group>"; };
+		AB09389E219D57F100ED3D29 /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
+		AB09389F219D57F100ED3D29 /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
 		AB53A599219BC69000111230 /* UIView+Default.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Default.h"; sourceTree = "<group>"; };
 		AB53A59A219BC69000111230 /* UIView+Default.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Default.m"; sourceTree = "<group>"; };
 		AB53A59C219BDE1700111230 /* NSLayoutConstraint+LGYXibToLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+LGYXibToLayout.h"; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 			children = (
 				AB7E87A321880F20003FBE7C /* View.xib */,
 				AB53A5D4219C188000111230 /* RegisterView.xib */,
+				AB09389F219D57F100ED3D29 /* RegisterView.h */,
+				AB09389E219D57F100ED3D29 /* RegisterView.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				AB7E877221880EC7003FBE7C /* AppDelegate.m in Sources */,
 				AB7E87A8218811C1003FBE7C /* LGYXibToLayoutDefault.m in Sources */,
 				AB53A59B219BC69000111230 /* UIView+Default.m in Sources */,
+				AB0938A0219D57F100ED3D29 /* RegisterView.m in Sources */,
 				ABA92BC92189A4BA001D6A07 /* XibLayoutAttribute.m in Sources */,
 				AB53A59E219BDE1700111230 /* NSLayoutConstraint+LGYXibToLayout.m in Sources */,
 				AB7E87AB21881D67003FBE7C /* UIView+LGYXibToLayout.m in Sources */,

@@ -144,6 +144,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyDescription" value="案例view"/>
+                <userDefinedRuntimeAttribute type="string" keyPath="xibPropertyName" value="backImageView"/>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>

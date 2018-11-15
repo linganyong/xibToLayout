@@ -122,6 +122,9 @@
     NSString *className = NSStringFromClass([view class]);
     NSString *propertyName = view.xibPropertyName;
     NSString *description = view.xibPropertyDescription;
+    if ([className containsString:@"_"]) {
+        return;
+    }
     // 生成初始化
     NSString *string;
     if (description) {
@@ -130,11 +133,14 @@
         string = [NSString stringWithFormat:@"\n\n-(%@ *) %@{\n if(!_%@){\n _%@ = [[%@ alloc] init]; $  \n} \n return _%@;  \n}",className,propertyName,propertyName,propertyName,className,propertyName];
     }
     
-    NSString *content = [NSString stringWithFormat:@"\n_%@.translatesAutoresizingMaskIntoConstraints = NO;",propertyName];
+    NSString *content = [NSString stringWithFormat:@"\n"];
     // 生成 addSubview
     for (UIView *item in view.subviews) {
         NSString *des = @"";
         NSString *des1 = view.xibPropertyDescription;
+        if ([NSStringFromClass([item class]) containsString:@"_"]) {
+            continue;
+        }
         if (des1) {
             des = [des stringByAppendingString:[NSString stringWithFormat:@"%@ add",des1]];
         }
@@ -159,8 +165,11 @@
 // 生成 subView 相关约束
 -(NSString *) getLayoutStringFromView:(UIView *)subView{
     if (self.isXibSimple) {
-        return [NSString stringWithFormat:@"(*%@*)",subView.xibPropertyName];
-//        return  [self getLayoutStringFromViewXibSimple:subView];
+        if (subView.xibPropertyName) {
+            return [NSString stringWithFormat:@"(*%@*)",subView.xibPropertyName];
+        }
+        return @"";
+//       return  [self getLayoutStringFromViewXibSimple:subView];
     }
     NSString *content = @"\n";
     for (NSLayoutConstraint *constraint in subView.constraints) {
@@ -282,11 +291,11 @@
                 }
                 
                 item1 = [NSString stringWithFormat:@"%@.%@" ,item1
-                         ,[self layoutAttributeTypeToString:constraint.firstAttribute isXibSimple:self.isXibSimple]];
+                         ,[self layoutAttributeTypeToSimpleString:constraint.firstAttribute isXibSimple:self.isXibSimple]];
                 
                 if (![item2 isEqualToString:@"nil"]) {
                     item2 = [NSString stringWithFormat:@"%@.%@" ,item2
-                            ,[self layoutAttributeTypeToString:constraint.secondAttribute isXibSimple:self.isXibSimple]];
+                            ,[self layoutAttributeTypeToSimpleString:constraint.secondAttribute isXibSimple:self.isXibSimple]];
                 }
                 
                 NSString *pro = @"";
@@ -389,6 +398,33 @@
         content = [content stringByAppendingString:str];
     }
     return content;
+}
+//NSLayoutAttribute 枚举转化为 String 名称
+-(NSString *) layoutAttributeTypeToSimpleString:(NSLayoutAttribute)type isXibSimple:(BOOL)isXibSimple{
+    switch (type) {
+        case NSLayoutAttributeLeft:{  return isXibSimple? @"leftXib":@"NSLayoutAttributeLeft";}break;
+        case NSLayoutAttributeRight:{  return isXibSimple? @"rightXib":@"NSLayoutAttributeRight";}break;
+        case NSLayoutAttributeTop:{  return isXibSimple? @"topXib":@"NSLayoutAttributeTop";}break;
+        case NSLayoutAttributeBottom:{  return isXibSimple? @"bottomXib":@"NSLayoutAttributeBottom";}break;
+        case NSLayoutAttributeLeading:{  return isXibSimple? @"leadingXib":@"NSLayoutAttributeLeading";}break;
+        case NSLayoutAttributeTrailing:{  return isXibSimple? @"trailingXib":@"NSLayoutAttributeTrailing";}break;
+        case NSLayoutAttributeWidth:{  return isXibSimple? @"widthXib":@"NSLayoutAttributeWidth";}break;
+        case NSLayoutAttributeHeight:{  return isXibSimple? @"heightXib":@"NSLayoutAttributeHeight";}break;
+        case NSLayoutAttributeCenterX:{  return isXibSimple? @"centerXXib":@"NSLayoutAttributeCenterX";}break;
+        case NSLayoutAttributeCenterY:{  return isXibSimple? @"centerYXib":@"NSLayoutAttributeCenterY";}break;
+        case NSLayoutAttributeLastBaseline:{  return isXibSimple? @"lastBaselineXib":@"NSLayoutAttributeLastBaseline";}break;
+        case NSLayoutAttributeFirstBaseline :{  return isXibSimple? @"firstBaselineXib":@"NSLayoutAttributeFirstBaseline";}break;
+        case NSLayoutAttributeLeftMargin :{  return isXibSimple? @"leftMarginXib":@"NSLayoutAttributeLeftMargin";}break;
+        case NSLayoutAttributeRightMargin :{  return isXibSimple? @"rightMarginXib":@"NSLayoutAttributeRightMargin";}break;
+        case NSLayoutAttributeTopMargin :{  return isXibSimple? @"topMarginXib":@"NSLayoutAttributeTopMargin";}break;
+        case NSLayoutAttributeBottomMargin :{  return isXibSimple? @"bottomMarginXib":@"NSLayoutAttributeBottomMargin";}break;
+        case NSLayoutAttributeLeadingMargin :{  return isXibSimple? @"leadingMarginXib":@"NSLayoutAttributeLeadingMargin";}break;
+        case NSLayoutAttributeTrailingMargin :{  return isXibSimple? @"trailingMarginXib":@"NSLayoutAttributeTrailingMargin";}break;
+        case NSLayoutAttributeCenterXWithinMargins:{  return isXibSimple? @"centerXWithinMarginsXib":@"NSLayoutAttributeCenterXWithinMargins";}break;
+        case NSLayoutAttributeCenterYWithinMargins:{  return isXibSimple? @"Xib":@"NSLayoutAttributeCenterYWithinMargins";}break;
+        case NSLayoutAttributeNotAnAttribute:{  return isXibSimple? @"centerYWithinMarginsXib":@"NSLayoutAttributeNotAnAttribute";}break;
+    }
+    return  @"";
 }
 
 
