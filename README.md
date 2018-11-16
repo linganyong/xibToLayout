@@ -18,5 +18,6 @@ NSString *mPath = [NSString stringWithFormat:@"//Users/lgy/Desktop/%@.m",self.cl
 
 如果：isXibSimple == true
 依赖： #import "UIView+LGYXibToLayout.h"
-生成如下 .m文件布局代码 如下：
-[self.backImageView.bottomXib equalTo:self.bottomXib constant:0.00];
+生成如下 .m文件布局代码 
+Massory 需要导入第三方 Massory
+
